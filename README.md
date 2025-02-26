@@ -102,5 +102,13 @@ O projeto utiliza a biblioteca FPDF para gerar boletins em formato PDF. Para ger
 - Aplicação: http://localhost:8080/boletim/gerar_pdf/{id_do_aluno}
 - PostgreSQL: Porta `5432`
 
+## Exemplo de Tela
+
+Aqui está Algumas capturas de telas do aplicativo:
+
+![Exemplo ao acessar um aluno com notas registradas ](images/print-01.png)
+![Exemplo ao acessar um aluno sem notas registradas ](images/print-02.png)
+![Exemplo de falha ao tentar gerar um boletim para um aluno inexistente](images/print-03.png)
+
 ## 📝 Licença
 Este projeto é de uso interno e pode ser adaptado conforme necessário.
