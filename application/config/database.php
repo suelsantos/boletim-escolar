@@ -68,13 +68,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | make active.  By default there is only one group (the 'default' group).
 */
 $active_group = 'default';
+$query_builder = TRUE;
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => '',
-	'password' => '',
-	'database' => '',
-	'dbdriver' => 'mysqli',
+	'hostname' => getenv('DB_HOST') ?: 'localhost',
+    'username' => getenv('DB_USER') ?: 'postgres',
+    'password' => getenv('DB_PASSWORD') ?: 'secret',
+    'database' => getenv('DB_NAME') ?: 'escola',
+	'dbdriver' => 'postgre',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
 	'db_debug' => (ENVIRONMENT !== 'production'),

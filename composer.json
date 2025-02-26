@@ -11,7 +11,9 @@
 		"source": "https://github.com/bcit-ci/CodeIgniter"
 	},
 	"require": {
-		"php": ">=5.4.8"
+		"php": ">=5.4.8",
+		"setasign/fpdf": "^1.8",
+		"fpdf/fpdf": "^1.86"
 	},
 	"suggest": {
 		"paragonie/random_compat": "Provides better randomness in PHP 5.x"

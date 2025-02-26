@@ -1,0 +1,32 @@
+# Permite seguir links simbolicos (necessario para algumas configuracoes de servidor)
+Options FollowSymLinks
+
+# Verifica se o modulo mod_rewrite esta ativado
+<IfModule mod_rewrite.c>    
+	# Ativa o mecanismo de reescrita de URLs
+    RewriteEngine On 
+
+	# Condicao para garantir que o arquivo ou diretorio nao seja um dos seguintes:
+    # - index.php (arquivo principal do site)
+    # - assets (pasta de recursos estaticos, como fontes, icones, etc.)
+    # - imagens (pasta de imagens)
+    # - css (pasta de arquivos CSS)
+    # - js (pasta de arquivos JS)
+    # - robots.txt (arquivo de configuracao para bots)
+    # - favicon.ico (icone do site)
+    RewriteCond $1 !^(index\.php|assets|images|css|js|robots\.txt|favicon\.ico)
+
+	# Verifica se o arquivo ou diretorio solicitado realmente nao existe
+    RewriteCond %{REQUEST_FILENAME} !-f
+
+	# Verifica se o diretorio solicitado realmente nao existe
+    RewriteCond %{REQUEST_FILENAME} !-d
+
+	# Reescreve todas as URLs que atendem as condicoes anteriores para o index.php, mantendo a estrutura da URL
+    RewriteRule ^(.*)$ index.php?/$1 [L]
+</IfModule>
+
+# Se o modulo mod_rewrite estiver habilitado, trata erros 404 (Pagina não encontrada) redirecionando para o index.php
+<IfModule mod_rewrite.c>
+    ErrorDocument 404 /index.php
+</IfModule>
