@@ -36,7 +36,13 @@ class Boletim extends CI_Controller {
      * @param  int $id ID do aluno
      * @return void
      */
-    public function gerar_pdf($id) {
+    public function gerar_pdf($id = NULL) {
+		// Verificar se o ID é válido (por exemplo, diferente de 0)
+		if ($id === 0 || !filter_var($id, FILTER_VALIDATE_INT)) {
+			show_404(); // Exibe o erro 404 se o ID não for passado ou não for um número inteiro válido
+			return;
+		}
+
 		// Verificar se o ID é um número inteiro
 		if (!filter_var($id, FILTER_VALIDATE_INT)) {
 			show_error('ID do aluno inválido.', 400, 'Erro de Validação');
