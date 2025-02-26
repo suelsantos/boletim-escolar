@@ -104,11 +104,16 @@ O projeto utiliza a biblioteca FPDF para gerar boletins em formato PDF. Para ger
 
 ## Exemplo de Tela
 
-Aqui está Algumas capturas de telas do aplicativo:
+Aqui estão algumas capturas de telas do aplicativo:
 
-![Exemplo ao acessar um aluno com notas registradas ](images/print-01.png)
-![Exemplo ao acessar um aluno sem notas registradas ](images/print-02.png)
-![Exemplo de falha ao tentar gerar um boletim para um aluno inexistente](images/print-03.png)
+Exemplo ao acessar um aluno com notas registradas
+![Exemplo](images/print-01.png)
+
+Exemplo ao acessar um aluno sem notas registradas
+![Exemplo](images/print-02.png)
+
+Exemplo de falha ao tentar gerar um boletim para um aluno inexistente
+![Exemplo](images/print-03.png)
 
 ## 📝 Licença
 Este projeto é de uso interno e pode ser adaptado conforme necessário.
