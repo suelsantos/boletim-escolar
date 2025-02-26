@@ -1,4 +1,4 @@
-# Projeto CodeIgniter com Docker e PostgreSQL
+# Geração de Boletim Escolar em PDF
 
 Este projeto utiliza **Docker**, **Docker Compose**, **CodeIgniter 3** e **PostgreSQL** para criar um ambiente de desenvolvimento eficiente e escalável. O mesmo se refere a um teste de Aptidão de Geração de Boletim Escolar em PDF.
 
@@ -7,40 +7,52 @@ Este projeto utiliza **Docker**, **Docker Compose**, **CodeIgniter 3** e **Postg
 - **Docker Compose**: Para orquestração dos containers.
 - **CodeIgniter 3**: Framework PHP para desenvolvimento web.
 - **PostgreSQL**: Banco de dados relacional.
+- **FPDF**: Lib para geração de PDFs.
+
+## Pré-requisitos
+Antes de rodar o projeto, você precisa ter os seguintes pré-requisitos instalados em sua máquina:
+
+- [Docker](https://www.docker.com/get-started) (e Docker Compose)
+- [Git](https://git-scm.com/)
 
 ## 📦 Estrutura do Projeto
 ```
 .
-├── app/                  # Código-fonte do CodeIgniter
-├── docker/
-│   ├── php/              # Configuração do PHP
-│   ├── postgresql/       # Configuração do banco de dados
-├── docker-compose.yml    # Configuração do Docker Compose
-├── .env                  # Variáveis de ambiente
-├── README.md             # Documentação do projeto
-└── scripts/              # Scripts SQL e utilitários
+├── application/
+│   ├── controllers/       # Controladores do CodeIgniter
+│   ├── models/            # Modelos do CodeIgniter
+│   ├── views/             # Visões do CodeIgniter
+│   ├── config/            # Configurações do CodeIgniter
+├── docker-compose.yml     # Arquivo de configuração do Docker Compose
+├── Dockerfile             # Arquivo para a construção da imagem Docker da aplicação
+├── vendor/                # Dependências do Composer
+└── README.md              # Documentação do projeto
 ```
 
 ## 🚀 Como Rodar o Projeto
 
-### 1. Configurar Variáveis de Ambiente
-Crie um arquivo `.env` na raiz do projeto e adicione as seguintes configurações:
-```ini
-DB_HOST=db
-DB_NAME=meubanco
-DB_USER=usuario
-DB_PASS=senha
-```
+### 1. Instalar o Docker e Docker Compose
+Certifique-se de que o Docker e o Docker Compose estão instalados no seu sistema. Se não estiverem, siga as instruções [oficiais do Docker](https://docs.docker.com/get-docker/) para instalação.
 
-### 2. Subir os Containers
-Execute o comando abaixo para iniciar o ambiente:
-```sh
+Este projeto já vem com um arquivo docker-compose.yml que irá configurar os containers necessários para o funcionamento da aplicação, incluindo o banco de dados PostgreSQL.
+
+### 1. Inicie os containers
+Dentro do diretório do projeto, execute o seguinte comando para iniciar os containers:
+```bash
 docker-compose up -d
 ```
 
-### 3. Acessar o Projeto
-- Aplicação: [http://localhost:8000](http://localhost:8000)
-- PostgreSQL: Porta `5432`
+Esse comando vai:
+
+Construir a imagem da aplicação (app) e o banco de dados (db).
+Rodar a aplicação PHP (CodeIgniter) no container codeigniter_app.
+Rodar o PostgreSQL no container postgres_db.
+
+### 2. Clonar o repositório
+Clone este repositório para sua máquina local:
+```bash
+git clone https://github.com/suelsantos/boletim-escolar.git
+```
 
 ## 🗄 Banco de Dados
 ### Criação das Tabelas
@@ -64,7 +76,7 @@ CREATE TABLE notas (
 );
 ```
 
-### Inserts Fakes
+### Inserir dados Fakes
 ```sql
 INSERT INTO alunos (nome, matricula) VALUES 
 ('João Silva', '2023001'),
@@ -84,6 +96,11 @@ INSERT INTO notas (aluno_id, disciplina_id, nota) VALUES
 (3, 2, 8.0),
 (3, 3, 7.5);
 ```
+
+### Acessar o Projeto
+O projeto utiliza a biblioteca FPDF para gerar boletins em formato PDF. Para gerar o boletim, você pode acessar a URL:
+- Aplicação: http://localhost:8080/boletim/gerar_pdf/{id_do_aluno}
+- PostgreSQL: Porta `5432`
 
 ## 📝 Licença
 Este projeto é de uso interno e pode ser adaptado conforme necessário.
